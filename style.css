@@ -1,0 +1,302 @@
+* {
+    cursor: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --white: #eeecea;
+    --yellow: #F6BD60;
+    --black: #2D2D34;
+    --typewriterSpeed: 1s;
+}
+
+body {
+    margin: 0%;
+    font-family: Helvetica, sans-serif, monospace;
+    background-color: var(--black);
+}
+
+.inner-cursor {
+    position: fixed;
+    width: 25px;
+    height: 25px;
+    transform: translate(-50%, -50%);
+    background-color: var(--white);
+    mix-blend-mode: difference;
+    border-radius: 50%;
+    pointer-events: none;
+    transition: width 0.5s, height 0.5s;
+}
+
+.inner-cursor.grow {
+    width: 40px;
+    height: 40px;
+    transition: width 0.5s, height 0.5s;
+}
+
+.outer-cursor {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%, -50%);
+    border: 2px solid var(--white);
+    mix-blend-mode: difference;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.core-container {
+    display: flex;
+    justify-content: center;
+}
+
+.core {
+    padding-top: 3rem;
+    width: 60rem;
+}
+
+.nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 200px;
+}
+
+.nav-left {
+    background-color: var(--yellow);
+    height: 70px;
+    border-radius: 10rem;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.nav-left a {
+    color: var(--black);
+    margin: 2rem;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+}
+
+.nav-left a::after {
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: var(--black);
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0rem;
+    transform: scale(0, 3);
+    transform-origin: left bottom;
+    transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.nav-left a:hover::after {
+    transform: scale(1, 1);
+}
+
+.nav-right h1{
+    color: var(--yellow);
+    font-size: 124px;
+    font-weight: bold;
+}
+
+.banner {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 240px;
+}
+
+.intro {
+    width: 35rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.name-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-title {
+    color: var(--white);
+    font-size: 48px;
+    position: relative;
+}
+
+.name-title::before {
+    content: " ";
+    width: 20px;
+    height: 20px;
+    background: var(--yellow);
+    border-radius: 10px;
+    position: absolute;
+    top: -1rem;
+    left: -1.5rem;
+}
+
+.name {
+    color: var(--white);
+    font-size: 64px;
+    font-weight: bolder;
+}
+
+.divider {
+    background-color: var(--yellow);
+    width: 35rem;
+    height: 0.3rem;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.desc {
+    color: var(--white);
+    font-size: 24px;
+    font-weight: lighter;
+    line-height: 1.6;
+    width: 30rem;
+}
+
+.contact-button {
+    margin-top: 20px;
+    background-color: var(--yellow);
+    width: 10rem;
+    height: 10px;
+    border-radius: 30px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.contact-button:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.contact-button a {
+    color: var(--black);
+    font-size: 20px;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-header {
+    color: var(--white);
+    font-size: 64px;
+    font-weight: bolder;
+    position: relative;
+    width: max-content;
+}
+
+.dot {
+    color: var(--yellow);
+}
+
+.project-header-animation {
+
+}
+
+.project-header-animation::before,
+.project-header-animation::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.project-header-animation::before {
+    background: var(--black);
+    animation: 
+        typewriter var(--typewriterSpeed) steps(9) 1s forwards;
+}
+
+.project-header::after {
+    width: 0.1em;
+    background: var(--yellow);
+    animation: 
+        typewriter var(--typewriterSpeed) steps(9) 1s forwards,
+        blinking 500ms steps(9) infinite;
+}
+
+@keyframes typewriter {
+    to {
+        left: 100%;
+    }
+}
+
+@keyframes blinking {
+    to {
+        background: transparent;
+    }
+}
+
+.project-divider {
+    background-color: var(--yellow);
+    width: 10rem;
+    height: 0.3rem;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.project-category {
+   
+}
+
+.project-subheader {
+    margin-top: 100px;
+    color: var(--white);
+    font-size: 36px;
+    font-weight: lighter;
+    position: relative;
+}
+
+.projet-subdivider {
+    background-color: var(--yellow);
+    width: 5rem;
+    height: 0.3rem;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.projects {
+
+}
+
+.indiv-project {
+
+}
+
+.project-image {
+
+}
+
+.project-cover {
+
+}
+
+.project-title {
+
+}
+
+.project-desc {
+
+}
