@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Log In</title>
+</head>
+<body>
+    <div class="core-container">
+        <div class="core">
+            <div class="nav-bar">
+                <div class="nav-left">
+                    LP Bypass
+                </div>
+                <div class="nav-right">
+                    <h1>M.</h1>
+                </div>
+            </div>
+            <div class="title-name"></div>
+            <div class="login-container">
+                <div class="login-title">Edit Logbook</div>
+                <form id="logbookForm">
+                    <div class="input-field-container">
+                        <label class="input-label" for="logbookdate">Log Book Date:</label>
+                        <input type="date" id="logbookdate" name="logbookdate" class="input-field">
+                        <div class="error-message error-date"></div>
+                    </div>
+                    <div class="input-field-container">
+                        <label for="clockin" class="input-label">Clock In:</label>
+                        <input type="text" id="clockin" name="clockin" class="input-field" autocomplete="off" placeholder=" ">
+                        <div class="error-message error-clockin"></div>
+                    </div>
+                    <div class="input-field-container">
+                        <label for="clockout" class="input-label">Clock Out:</label>
+                        <input type="text" id="clockout" name="clockout" class="input-field" autocomplete="off" placeholder=" ">
+                        <div class="error-message error-clockout"></div>
+                    </div>
+                    <div class="input-field-container">
+                        <label for="activity" class="input-label">Activity:</label>
+                        <input type="text" id="activity" name="activity" class="input-field" autocomplete="off" placeholder=" ">
+                        <div class="error-message error-activity"></div>
+                    </div>
+                    <div class="input-field-container">
+                        <label for="description" class="input-label">Description:</label>
+                        <input type="text" id="description" name="description" class="input-field" autocomplete="off" placeholder=" ">
+                        <div class="error-message error-description"></div>
+                    </div>
+                    <button type="submit" class="submit-button">Submit</button>
+                </form>
+            </div>
+            <button class="logout-button">Log Out</button>
+        </div>
+    </div>
+</body>
+
+<script src="./script.js"></script>
+
+</html>

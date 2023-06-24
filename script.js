@@ -1,38 +1,140 @@
-let innerCursor = document.querySelector(".inner-cursor");
-let outerCursor = document.querySelector(".outer-cursor");
+window.addEventListener("load", () => {
 
-document.addEventListener("mousemove", moveCursor);
+    function sendData(formProps) {   
+        const username = formProps.username;
+        const password = formProps.password;
+        (async () => {
+            const response = await fetch('https://enrichment-socs.apps.binus.ac.id/lp-api/api/auth/login', {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                },
+            })
+        
+            const data = await response.json()
+            console.log(data);
+            if(data.status != 200 && data.message.username){
+                document.querySelector(".error-username").innerHTML = data.message.username;
+            }
 
-function moveCursor(e) {
-    let x = e.clientX;
-    let y = e.clientY;
+            if(data.status != 200 && data.message.password){
+                document.querySelector(".error-password").innerHTML = data.message.password;
+            }
 
-    innerCursor.style.left = `${x}px`;
-    innerCursor.style.top = `${y}px`;
-    outerCursor.style.left = `${x}px`;
-    outerCursor.style.top = `${y}px`;
-}
+            if(data.status != 200 && !data.message.username && !data.message.password){
+                document.querySelector(".error-password").innerHTML = data.message;
+            }
+            
+            if(data.status == 200){
+                localStorage.setItem("loginData", JSON.stringify(data));
+                window.location.href = "log-book.html";
+            }
+        })();
+    }   
 
-let links = Array.from(document.querySelectorAll("a"));
+    const form = document.getElementById("myForm");
+    if(form) {
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const FD = new FormData(form);
+            const formProps = Object.fromEntries(FD);
+            sendData(formProps);
+        });
+    }
 
-links.forEach(link => {
-    link.addEventListener("mouseover", () => {
-        innerCursor.classList.add("grow");
-    })
+    // Log Book
+    const loginData = JSON.parse(localStorage.getItem("loginData"));
+    const logoutButton = document.querySelector(".logout-button");
+    if(logoutButton) {
+        logoutButton.addEventListener("click", () => {
+            localStorage.removeItem("loginData");
+            window.location.href = "index.html";
+        });
+    }
 
-    link.addEventListener("mouseleave", () => {
-        innerCursor.classList.remove("grow");
-    })
-})
+    if(!loginData && window.location.href == "https://injoker24.github.io/Learning-Plan-Bypass/log-book.html") {
+        window.location.href = "index.html";
+    }
 
-const observer1 = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('project-header-animation');
-            return;
+    var token;
+    var lpData;
+    var lbData;
+    if(loginData) {
+        token = "Bearer " + loginData.data.token;
+        
+        (async () => {
+            const response = await fetch('https://enrichment-socs.apps.binus.ac.id/lp-api/api/student/lp', {
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                    'Authorization': token
+                },
+            })
+        
+            const data = await response.json()
+            lpData = data;
+            if(data.status == 200){
+                document.querySelector(".title-name").innerHTML = "Hi, " + lpData.data.learningPlan.student_name;
+            }
+        })();
+
+        (async () => {
+            const response = await fetch('https://enrichment-socs.apps.binus.ac.id/lp-api/api/student/log-book', {
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                    'Authorization': token
+                },
+            })
+        
+            const data = await response.json()
+            lbData = data;
+            console.log(lbData);
+            if(data.status == 200){
+                
+            }
+        })();
+
+        function editLogBook(formProps) {   
+            const date = new Date(formProps.logbookdate);
+            const month = date.getMonth() + 1;
+            const logbookdate = formProps.logbookdate;
+            const clockin = formProps.clockin;
+            const clockout = formProps.clockout;
+            const activity = formProps.activity;
+            const description = formProps.description;
+            (async () => {
+                const response = await fetch('', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        clock_in: clockin,
+                        clock_out: clockout,
+                        activity: activity,
+                        description: description
+                    }),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                        'Authorization': token
+                    },
+                })
+            
+                const data = await response.json()
+                console.log(data);
+            })();
+        }   
+
+        const lbform = document.getElementById("logbookForm");
+        if(lbform) {
+            lbform.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const FD = new FormData(lbform);
+                const formProps = Object.fromEntries(FD);
+                editLogBook(formProps);
+            });
         }
-    });
+    }
 });
-
-
-observer1.observe(document.querySelector('.project-header'));
