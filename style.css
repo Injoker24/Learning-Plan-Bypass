@@ -166,3 +166,17 @@ input:not(:placeholder-shown) {
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
+
+.success-edit {
+    color: rgb(14, 153, 26);
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 1rem
+}
+
+textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 50px;
+    max-height: 100px;
+}

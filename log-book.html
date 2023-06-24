@@ -44,9 +44,10 @@
                     </div>
                     <div class="input-field-container">
                         <label for="description" class="input-label">Description:</label>
-                        <input type="text" id="description" name="description" class="input-field" autocomplete="off" placeholder=" ">
+                        <textarea oninput="auto_grow(this)" id="description" name="description" class="input-field" autocomplete="off" placeholder=" "></textarea>
                         <div class="error-message error-description"></div>
                     </div>
+                    <div class="success-edit"></div>
                     <button type="submit" class="submit-button">Submit</button>
                 </form>
             </div>
