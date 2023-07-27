@@ -112,7 +112,7 @@ input:not(:placeholder-shown) {
 }
 
 textarea {
-    overflow-y: scroll;
+    overflow-y: scroll; !important
 }
 
 textarea:not(:placeholder-shown) {
