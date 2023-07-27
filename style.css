@@ -111,6 +111,10 @@ input:not(:placeholder-shown) {
     color: var(--white);
 }
 
+textarea {
+    overflow-y: scroll;
+}
+
 textarea:not(:placeholder-shown) {
     background-color: var(--black);
     color: var(--white);
