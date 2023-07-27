@@ -111,6 +111,11 @@ input:not(:placeholder-shown) {
     color: var(--white);
 }
 
+textarea:not(:placeholder-shown) {
+    background-color: var(--black);
+    color: var(--white);
+}
+
 .submit-button {
     padding: 1rem 1rem;
     border-radius: 0.5rem;
