@@ -112,7 +112,10 @@ input:not(:placeholder-shown) {
 }
 
 textarea {
-    overflow-y: scroll; !important
+    overflow-y: scroll;
+    resize: none;
+    min-height: 50px;
+    max-height: 100px
 }
 
 textarea:not(:placeholder-shown) {
@@ -181,11 +184,4 @@ textarea:not(:placeholder-shown) {
     font-weight: bold;
     font-size: 1.25rem;
     margin-bottom: 1rem
-}
-
-textarea {
-    resize: none;
-    overflow: hidden;
-    min-height: 50px;
-    max-height: 100px;
 }
