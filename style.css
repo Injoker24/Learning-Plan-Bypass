@@ -115,7 +115,6 @@ textarea {
     overflow-y: scroll;
     resize: none;
     min-height: 50px;
-    max-height: 100px
 }
 
 textarea:not(:placeholder-shown) {
