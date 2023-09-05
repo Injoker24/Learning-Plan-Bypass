@@ -112,7 +112,6 @@ input:not(:placeholder-shown) {
 }
 
 textarea {
-    overflow-y: scroll;
     resize: none;
     min-height: 50px;
 }
